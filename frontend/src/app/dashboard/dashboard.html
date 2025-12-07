@@ -1,0 +1,20 @@
+<div class="dashboard-layout">
+  <!-- Sidebar fijo -->
+  <app-sidebar></app-sidebar>
+
+  <!-- Contenedor del contenido dinámico -->
+  <div class="dashboard-content">
+    <router-outlet></router-outlet>
+
+    <!-- Mantener modales si quieres que se usen desde recents -->
+    <app-modal-crear-linea-tiempo *ngIf="abrirModal" 
+      (cerrarModal)="cerrarCrearLinea($event)" 
+      (abrirPlantilla)="abrirSeleccionPlantilla()">
+    </app-modal-crear-linea-tiempo>
+
+    <app-modal-seleccionar-plantilla *ngIf="mostrarModalPlantilla" 
+      (cerrarModal)="cerrarSeleccionPlantilla()" 
+      (volverFormulario)="volverACrear()">
+    </app-modal-seleccionar-plantilla>
+  </div>
+</div>

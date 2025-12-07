@@ -1,0 +1,72 @@
+<main id="comunidad-page">
+  <app-header [titulo]="'Comunidad'"></app-header>
+
+  <section id="content">
+    <section id="proyects-main">
+
+      <h3 class="section-title heading__small">Explora la comunidad</h3>
+
+      <div id="timelines-content-wrapper">
+
+        <div class="cards-grid">
+          <app-timeline-card *ngFor="let linea of lineas" [idLinea]="linea.idLineaTiempo"
+            [imagen]="linea.imagenPortada ? ('http://localhost:8080' + linea.imagenPortada) : 'assets/default.jpg'"
+            [titulo]="linea.titulo" [autor]="linea.usuario?.nombre || 'Desconocido'"
+            [fecha]="linea.fechaCreacion ? (linea.fechaCreacion | date:'longDate') : ''"
+            [tags]="linea.palabrasClave?.split(',') || []" [mostrarOpciones]="false" [mostrarMeGusta]="true"
+            [mostrarGuardado]="true" [estadoMeGusta]="linea.estadoMeGusta" [contadorMeGusta]="linea.contadorMeGusta"
+            [estadoGuardado]="linea.estadoGuardado" [contadorGuardado]="linea.contadorGuardado"
+            (clickMeGusta)="toggleMeGusta($event)" (clickGuardado)="toggleGuardado($event)"
+            (abrirLinea)="irALinea($event)">
+          </app-timeline-card>
+        </div>
+      </div>
+    </section>
+  </section>
+  <!-- Fondo -->
+  <div class="modal-overlay" *ngIf="modalAbierto" (click)="cerrarModal()"></div>
+
+  <!-- Modal -->
+  <div class="modal-contenido" *ngIf="modalAbierto" (click)="$event.stopPropagation()">
+
+    <!-- HEADER SUPERIOR DEL MODAL -->
+    <div class="modal-header">
+      <h2 class="modal-titulo">{{ lineaActiva?.titulo }}</h2>
+      <button class="cerrar-btn" (click)="cerrarModal()">✕</button>
+    </div>
+
+    <!-- SUBHEADER (autor, likes, guardados) -->
+    <div class="modal-subheader">
+      <span class="autor">Por {{ lineaActiva?.usuario?.nombre || 'Desconocido' }}</span>
+
+      <div class="stats">
+        <span class="stat-item"><svg width="20" height="20" viewBox="0 0 24 24">
+            <path d="M12 21s-6-4.3-9-8.5C-1.2 7.4 1.6 2 6.3 2c2.2 0 4.1 1.2 5.2 3 
+                                           1.1-1.8 3-3 5.2-3 4.7 0 7.5 5.4 3.3 10.5C18 16.7 12 21 12 21z"
+              fill="#ff4b4b" />
+          </svg> {{ lineaActiva?.contadorMeGusta }}</span>
+        <span class="stat-item"><svg width="20" height="20" viewBox="0 0 12 17">
+            <path d="M10.375 0.270081H1.625C1.2106 0.270081 0.813171 0.434701 
+                                           0.520146 0.727726C0.22712 1.02075 0.0625001 1.41818 
+                                           0.0625001 1.83258V15.5826C0.0624439 15.75 0.107198 15.9143 
+                                           0.192114 16.0585C0.277031 16.2028 0.399013 16.3216 
+                                           0.545392 16.4028C0.691772 16.484 0.857211 16.5245 
+                                           1.02453 16.5201C1.19185 16.5157 1.35494 16.4666 
+                                           1.49688 16.3779L5.99922 13.5654L10.5031 16.3779
+                                           C10.6451 16.4666 10.8082 16.5157 10.9755 16.5201
+                                           C11.1428 16.5245 11.3082 16.484 11.4546 16.4028
+                                           C11.601 16.3216 11.723 16.2028 11.8079 16.0585
+                                           C11.8928 15.9143 11.9376 15.75 11.9375 15.5826V1.83258Z" fill="#2d436e" />
+          </svg>{{ lineaActiva?.contadorGuardado }}</span>
+      </div>
+    </div>
+
+    <!-- CONTENIDO -->
+    <div class="modal-body">
+      <app-render-plantilla [lineaId]="lineaSeleccionada" class="contenido-modal">
+      </app-render-plantilla>
+    </div>
+
+  </div>
+
+</main>

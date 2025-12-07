@@ -1,0 +1,139 @@
+/* Overlay independiente */
+.compartir-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(101, 100, 100, 0.45);
+  backdrop-filter: blur(3px);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  z-index: 9999;
+}
+
+/* Contenedor principal tipo modal */
+.compartir-container {
+  background: white;
+  width: 520px;
+  padding: 26px;
+  border-radius: 16px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+  animation: fadeIn 0.25s ease;
+}
+
+.titulo {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 18px;
+}
+
+/* Caja de link + copiar */
+.link-box {
+  display: flex;
+  gap: 12px;
+
+  input {
+    flex: 1;
+    background: var(--⭐-bg-default-hover);
+    border: none;
+    border-radius: 12px;
+    padding: 12px 16px;
+    align-items: center;
+    gap: 4px;
+    color: var(--⭐-text-default-secondary);
+  }
+
+  .btn-copiar {
+    background: var(--⭐-bg-selected-strong);
+    color: white;
+    padding: 12px 16px;
+    border-radius: 12px;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    
+  }
+  .btn-copiar:hover{
+    background: var(--⭐-text-brand-default);
+  }
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #c2bebee8;
+  margin: 18px 0;
+}
+
+/* Íconos de redes */
+.social-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 26px;
+  margin-bottom: 10px;
+}
+
+.social-btn {
+  width: 50px;
+  height: 50px;
+  background: #f1f1f1;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+  cursor: pointer;
+
+  img {
+    width: 26px;
+    height: 26px;
+  }
+
+  &:hover {
+    background: #e7e7e7;
+  }
+}
+
+/* Toast */
+.toast {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) scale(0.95);
+  background: #1e1e1e;
+  color: white;
+  padding: 14px 12px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  font-weight: 500;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+  z-index: 9999;
+  animation: toastInOut 4s ease forwards;
+}
+
+/* Animación */
+@keyframes toastInOut {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-10px) scale(0.95);
+  }
+  10% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0px) scale(1);
+  }
+  85% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0px) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-10px) scale(0.95);
+  }
+}

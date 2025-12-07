@@ -1,0 +1,25 @@
+<div *ngIf="cargando">
+  Cargando línea...
+</div>
+
+<div *ngIf="!cargando">
+
+  <!-- Plantilla 1 -->
+  <app-plantilla-clasica 
+    *ngIf="plantillaId === 1"
+    [linea]="linea">
+  </app-plantilla-clasica>
+
+  <!-- Plantilla 2 -->
+  <app-plantilla-minimalista
+    *ngIf="plantillaId === 2"
+    [linea]="linea">
+  </app-plantilla-minimalista>
+
+  <!-- Plantilla 3 -->
+  <app-plantilla-moderna
+    *ngIf="plantillaId === 3"
+    [linea]="linea">
+  </app-plantilla-moderna>
+
+</div>

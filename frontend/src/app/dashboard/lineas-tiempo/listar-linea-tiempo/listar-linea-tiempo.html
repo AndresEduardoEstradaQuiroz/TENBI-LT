@@ -1,0 +1,24 @@
+<h2>Listado de líneas de tiempo</h2>
+
+<div *ngIf="lineas.length === 0">
+    <p>No hay líneas de tiempo registradas.</p>
+</div>
+
+<div *ngFor="let linea of lineas" class="linea-card">
+    <h3>{{ linea.titulo }}</h3>
+    <p><strong>Tema:</strong> {{ linea.tema?.nombreTema || 'Sin tema' }}</p>
+    <p><strong>Descripción:</strong> {{ linea.descripcion }}</p>
+    <p><strong>URL:</strong> <a [href]="linea.url" target="_blank">{{ linea.url }}</a></p>
+    <p><strong>Palabras clave:</strong> {{ linea.palabrasClave }}</p>
+
+    <h4>Hitos:</h4>
+    <ul>
+        <li *ngFor="let h of linea.hitos">
+            <strong>{{ h.tituloHito }}</strong> — {{ h.descripcionHito }} ({{ h.anio }}/{{ h.mes }}/{{ h.dia }})
+            <br />
+            <small><a [href]="h.url" target="_blank">{{ h.url }}</a></small>
+        </li>
+    </ul>
+
+    <hr />
+</div>

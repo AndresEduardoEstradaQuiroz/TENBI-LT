@@ -1,0 +1,129 @@
+.notification-modal {
+  width: 400px;
+  text-align: center;
+  padding: var(--Spacers-spacer-5) var(--Spacers-spacer-4) var(--Spacers-spacer-4) var(--Spacers-spacer-4);
+  border-radius: var(--Radius-radius-xl);
+  background-color: var(--⭐-bg-default-default);
+  box-shadow: var(--effect-dark-elevation-sepecial-apple);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--Spacers-spacer-4);
+  position: absolute;
+  left: 50%;
+  top: 35%;
+  transform: translate(-50%, -50%);
+  z-index: 250;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.notification-modal__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: var(--Spacers-spacer-2);
+}
+
+.notification-modal__content-hero {
+  display: none;
+  width: 64px;
+  height: 71px;
+  position: relative;
+}
+.notification-modal__content-hero.show {
+  display: block;
+}
+
+.notification-icon {
+  display: none;
+  pointer-events: none;
+  position: absolute;
+}
+
+.notification-icon.success{
+  fill: var(--⭐-icon-success-default);
+}
+.notification-icon.success.show {
+  display: block;
+}
+
+.notification-icon.warning{
+  fill: var(--⭐-icon-warning-default);
+}
+.notification-icon.warning.show {
+  display: block;
+}
+
+.notification-icon.error {
+  fill: var(--⭐-icon-danger-default);
+}
+.notification-icon.error.show {
+  display: block;
+}
+
+.notification-modal__content-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--Spacers-spacer-1);
+
+  min-width: 0;
+}
+
+.notification-modal__description {
+  color: var(--🎨-black-600);
+  overflow-wrap: anywhere; 
+  word-break: break-word; 
+  width: 100%;
+}
+
+.notification-modal__actions {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: var(--Spacers-spacer-2);
+}
+
+.notification-modal__button {
+  width: 100%;
+  border-radius: var(--Radius-radius-m);
+  padding: var(--Spacers-spacer-2);
+  border: none;
+  cursor: pointer;
+}
+
+.notification-modal__button.success {
+  background-color: var(--⭐-bg-succes-default);
+  color: var(--⭐-text-success-on-success);
+}
+.notification-modal__button.success:hover {
+  background-color: var(--⭐-bg-succes-hover);
+}
+
+.notification-modal__button.warning {
+  background-color: var(--⭐-bg-warning-default);
+  color: var(--⭐-text-warning-on-warning);
+}
+.notification-modal__button.warning:hover {
+  background-color: var(--⭐-bg-warning-hover);
+}
+
+.notification-modal__button.error {
+  background-color: var(--⭐-bg-danger-default);
+  color: var(--⭐-text-danger-on-danger);
+}
+.notification-modal__button.error:hover {
+  background-color: var(--⭐-bg-danger-hover);
+}
+.notification-modal__button.secondary {
+  background-color: var(--⭐-bg-default-secondary); 
+}
+
+.notification-modal__button.secondary:hover {
+  background-color: var(--⭐-bg-default-tertiary); 
+}

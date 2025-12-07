@@ -1,0 +1,504 @@
+/* Definición de variables CSS (necesarias para que el SCSS funcione) */
+/* Debes asegurar que estas variables existan en un archivo global, pero las definimos aquí como ejemplo */
+:root {
+    /* Colores y fondos */
+    --⭐-bg-default-default: #ffffff; /* Blanco de fondo */
+    --⭐-bg-brand-default: #007bff; /* Azul (Marca) */
+    --⭐-bg-brand-hover: #0056b3;
+    --⭐-bg-danger-default: #dc3545; /* Rojo (Peligro) */
+    --⭐-bg-danger-hover: #c82333;
+    --⭐-bg-succes-default: #28a745; /* Verde (Éxito) */
+    --⭐-bg-succes-hover: #1e7e34;
+    --⭐-bg-disabled-default: #e9ecef;
+    --⭐-bg-hover-default: #f8f9fa;
+    /* Texto y Iconos */
+    --⭐-text-brand-on-brand: #ffffff;
+    --⭐-text-danger-on-danger: #ffffff;
+    --⭐-text-success-on-success: #ffffff;
+    --⭐-text-disabled-on-disabled: #6c757d;
+    --⭐-icon-success-onsuccess: #ffffff;
+    --⭐-icon-danger-ondanger: #ffffff;
+    /* Bordes */
+    --⭐-border-default-default: #ced4da;
+    --⭐-border-default-strong: #adb5bd;
+    --⭐-border-brand-strong: #007bff;
+    /* Espaciadores */
+    --Spacers-spacer-1: 0.25rem; /* 4px */
+    --Spacers-spacer-2: 0.5rem;  /* 8px */
+    --Spacers-spacer-3: 0.75rem; /* 12px */
+    --Spacers-spacer-4: 1rem;    /* 16px */
+    --Spacers-spacer-6: 1.5rem;  /* 24px */
+    /* Radios */
+    --Radius-radius-s: 4px;
+    --Radius-radius-m: 6px;
+    --Radius-radius-l: 8px;
+    --Radius-radius-xl: 10px;
+    --Radius-radius-xxl: 12px;
+    --Radius-radius-xxxl: 16px;
+}
+
+/* Estilo para el mensaje de estado que reemplaza a alert() */
+.status-message {
+    padding: var(--Spacers-spacer-2) var(--Spacers-spacer-4);
+    margin-top: var(--Spacers-spacer-4);
+    border-radius: var(--Radius-radius-l);
+    background-color: var(--⭐-bg-succes-default);
+    color: var(--⭐-text-success-on-success);
+    font-weight: 600;
+    text-align: center;
+}
+
+
+/* FORMULARIO DE LINEA DE TIEMPO */
+
+#create-line-modal {
+    width: 100%; /* Hacemos que sea flexible */
+    max-width: 1200px; /* Limitamos el ancho para escritorio */
+    background-color: var(--⭐-bg-default-default);
+    border-radius: var(--Radius-radius-xxxl);
+    padding: var(--Spacers-spacer-6);
+    display: grid;
+    /* Ajuste para 2 columnas: 1 columna de ancho variable, 1 divisor, 1 columna para hitos scrollable */
+    grid-template-columns: minmax(300px, 1fr) 1px minmax(350px, 1fr); 
+    gap: var(--Spacers-spacer-6);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Diseño responsivo básico para móviles */
+@media (max-width: 900px) {
+    #create-line-modal {
+        grid-template-columns: 1fr; /* Columna única en móviles */
+        padding: var(--Spacers-spacer-4);
+        max-width: 100vw;
+        border-radius: 0;
+    }
+    .vertical-divider {
+        display: none; /* Ocultar divisor */
+    }
+}
+
+.vertical-divider {
+    height: 100%;
+    width: 1px;
+    background-color: var(--⭐-border-default-default);
+    /* En móvil, no se muestra, ya cubierto por @media */
+}
+
+#general-info-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--Spacers-spacer-4);
+}
+
+.line_form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--Spacers-spacer-4);
+    height: 100%; /* Permite que el 'create-line-actions' se pegue al fondo */
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--Spacers-spacer-2);
+    width: 100%;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    border: 1px solid var(--⭐-border-default-default);
+    border-radius: var(--Radius-radius-xl);
+    padding: var(--Spacers-spacer-2) var(--Spacers-spacer-2) var(--Spacers-spacer-2) var(--Spacers-spacer-3);
+    width: 100%;
+    transition: border-color 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--⭐-border-brand-strong);
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+.form-group textarea {
+    min-height: 100px; /* Usamos min-height en lugar de height fijo */
+    padding-right: var(--Spacers-spacer-3);
+    resize: vertical;
+}
+
+.create-line-actions {
+    margin-top: auto; /* Empuja los botones al final del contenedor de la forma */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end; /* Alinea los botones a la derecha */
+    gap: var(--Spacers-spacer-4);
+    padding-top: var(--Spacers-spacer-4);
+}
+
+.save-line-btn,
+.cancel-line-btn {
+    padding: var(--Spacers-spacer-2) var(--Spacers-spacer-3);
+    border-radius: var(--Radius-radius-l);
+    border: none;
+    font-weight: bold;
+    transition: background-color 0.2s, opacity 0.2s;
+}
+
+.save-line-btn {
+    background-color: var(--⭐-bg-brand-default);
+    color: var(--⭐-text-brand-on-brand);
+}
+
+.save-line-btn:not(:disabled):hover {
+    background-color: var(--⭐-bg-brand-hover);
+    cursor: pointer;
+}
+
+.save-line-btn:disabled {
+    background-color: var(--⭐-bg-disabled-default);
+    color: var(--⭐-text-disabled-on-disabled);
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.cancel-line-btn {
+    background-color: var(--⭐-bg-danger-default);
+    color: var(--⭐-text-danger-on-danger);
+}
+
+.cancel-line-btn:hover {
+    background-color: var(--⭐-bg-danger-hover);
+    cursor: pointer;
+}
+
+/*hitos*/
+#hitos-info-section {
+    /* grid-row: 1/2; */
+    /* grid-column: 3/4; */
+    display: flex;
+    flex-direction: column;
+    gap: var(--Spacers-spacer-4);
+    overflow: hidden; /* Necesario para que el hitos-wrap pueda hacer scroll */
+    min-height: 400px; /* Altura mínima para mostrar los hitos */
+}
+
+.hitos-action {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between; /* Espacio entre el h3 y el botón */
+    gap: var(--Spacers-spacer-2);
+}
+
+.create-hito-btn {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: var(--Spacers-spacer-1) var(--Spacers-spacer-2);
+    gap: var(--Spacers-spacer-1);
+    border: none;
+    border-radius: var(--Radius-radius-m);
+    background-color: var(--⭐-bg-succes-default);
+    font-weight: 500;
+    
+    span {
+        color: var(--⭐-text-success-on-success);
+    }
+    
+    svg {
+        color: var(--⭐-icon-success-onsuccess);
+        stroke: currentColor; /* Aseguramos que el color del stroke sea el de la fuente */
+        fill: none;
+    }
+}
+
+.create-hito-btn:hover {
+    cursor: pointer;
+    background-color: var(--⭐-bg-succes-hover);
+}
+
+.delete-hito-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px; /* Tamaño fijo */
+    height: 32px;
+    padding: 0;
+    border: none;
+    border-radius: 50%; /* Circular */
+    background-color: var(--⭐-bg-danger-default);
+    transition: background-color 0.2s;
+
+    svg {
+        stroke: none;
+        fill: var(--⭐-icon-danger-ondanger);
+    }
+}
+
+.delete-hito-btn:hover {
+    cursor: pointer;
+    background-color: var(--⭐-bg-danger-hover);
+}
+
+/* ======================================== FORMULARIO DE LOS HITOS ========================================*/
+.hitos-wrap {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--Spacers-spacer-3);
+    width: 100%;
+    overflow-y: auto; /* Hace scroll solo en esta sección */
+    
+    /* Ocultar barra de desplazamiento */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.hitos-wrap::-webkit-scrollbar {
+    display: none;
+}
+
+.hitos-form_container {
+    width: 100%;
+    position: relative;
+    /* Contenedor no tiene padding, el inner lo tiene */
+}
+
+.hito-inner {
+    width: 100%;
+    border-radius: var(--Radius-radius-xl);
+    background-color: var(--⭐-bg-default-default);
+    border: 1px solid var(--⭐-border-default-default);
+    transition: border-color 0.3s;
+}
+
+.hitos-form_header {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--Spacers-spacer-3) var(--Spacers-spacer-4);
+    cursor: pointer;
+    border-radius: var(--Radius-radius-xl);
+    transition: background-color 0.2s;
+}
+
+.hitos-form_header:hover {
+    background-color: var(--⭐-bg-hover-default);
+}
+
+.hitos-form_hero-title {
+    margin: 0;
+    font-size: 1.1em;
+    font-weight: 600;
+    color: #343a40;
+}
+
+.delete-hito-btn {
+    /* Reutilizado de arriba, pero lo ajustamos en el contexto del header si es necesario */
+    margin-left: var(--Spacers-spacer-2);
+}
+
+/* ... otros estilos ... */
+
+.hitos-form_body {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--Spacers-spacer-4);
+    
+    /* Control de transición: CERRADO */
+    max-height: 0;
+    opacity: 0;
+    padding: 0 var(--Spacers-spacer-4);
+    pointer-events: none;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out, padding 0.3s ease-in-out;
+}
+
+.hitos-form_body.expanded {
+    /* Estado ABIERTO */
+    max-height: 1500px; /* Valor suficientemente grande para expandirse */
+    opacity: 1;
+    pointer-events: auto;
+    padding-top: var(--Spacers-spacer-4);
+    padding-bottom: var(--Spacers-spacer-4);
+}
+
+
+.form-hito_section {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: var(--Spacers-spacer-4);
+}
+
+/* En móvil, los campos de hito en línea deben apilarse */
+@media (max-width: 600px) {
+    .form-hito_section {
+        flex-direction: column;
+    }
+}
+
+.form-hito-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 6px;
+    flex: 1;
+
+    label {
+        font-size: 0.9em;
+        font-weight: 500;
+        color: #495057;
+    }
+
+    input {
+        border-radius: var(--Radius-radius-xl);
+        border: 1px solid var(--⭐-border-default-strong);
+        padding: var(--Spacers-spacer-1) var(--Spacers-spacer-3);
+        width: 100%;
+        transition: border-color 0.2s;
+    }
+    input:focus {
+        outline: none;
+        border-color: var(--⭐-border-brand-strong);
+        box-shadow: 0 0 0 1px rgba(0, 123, 255, 0.25);
+    }
+}
+
+.form-hito-group>textarea {
+    width: 100%;
+    min-height: 70px;
+    padding: var(--Spacers-spacer-2) var(--Spacers-spacer-3);
+    border-radius: var(--Radius-radius-m);
+    border: 1px solid var(--⭐-border-default-strong);
+    resize: vertical;
+}
+
+/* ==== AJUSTES VISUALES DEL MODAL INTERNO ==== */
+
+/* Quitamos el borde/sombra del contenedor interno */
+#create-line-modal {
+  box-shadow: none !important;
+  border: none !important;
+  background-color: transparent !important; /* deja que el modal padre maneje el fondo */
+  padding: 0 !important;
+  max-width: none !important;
+}
+
+/* Hacemos que el contenido interno (formularios) tenga scroll propio */
+form.line_form_wrap {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 2rem;
+  width: 100%;
+  max-height: calc(90vh - 60px); /* deja espacio para el botón de cerrar */
+  overflow-y: auto;
+}
+
+/* Ajuste del fondo del modal principal (opcional si se ve doble fondo) */
+:host {
+  display: block;
+  background: none;
+}
+
+// diseños para el modal de confirmar cancelación
+.confirm-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.0); // inicio transparente
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+
+  animation: fadeInOverlay 0.25s ease forwards;
+}
+
+@keyframes fadeInOverlay {
+  from { background: rgba(0,0,0,0); }
+  to   { background: rgba(0,0,0,0.5); }
+}
+
+.confirm-box {
+  background: #fff;
+  padding: 24px;
+  border-radius: 10px;
+  max-width: 350px;
+  text-align: center;
+
+  opacity: 0;
+  transform: scale(0.8);
+  animation: popIn 0.25s ease forwards;
+}
+
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.confirm-actions {
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn-confirm {
+  background: #e53935;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    background: #c62828;
+  }
+}
+
+.btn-cancel {
+  background: #9e9e9e;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    background: #757575;
+  }
+}
+
+.mensaje-limite {
+    margin-top: 15px;
+    padding: 10px 15px;
+    background: #fde4e4;
+    color: #7b2727;
+    border: 1px solid #ecd3d3;
+    border-radius: 6px;
+    font-size: 14px;
+    width: 100%;
+    text-align: center;
+
+    display: block !important;
+    background-image: none !important;
+}
+

@@ -1,0 +1,75 @@
+<h2 class="ajustes-titulo">Ajustes de perfil</h2>
+
+<div class="ajustes-container">
+
+  <!-- FOTO DE PERFIL -->
+  <div class="foto-perfil">
+    <img [src]="previewFoto || 'assets/default.jpg'" alt="Foto de perfil" class="preview-img" />
+
+    <div class="foto-info">
+      <div>
+        <span class="body__largestrong">Sube una foto de perfil</span><br>
+        <span class="body__medium">Esto ayudará a que te reconozcan en Comunidad</span>
+      </div>
+      <button type="button" class="upload-btn" (click)="fileInput.click()"><span class="body__medium">Subir foto</span></button>
+    </div>
+
+    <input #fileInput type="file" (change)="onFileChange($event)" accept="image/*" hidden />
+  </div>
+
+  <hr class="separador">
+
+  <!-- EDITAR INFORMACIÓN -->
+  <div class="editar-info">
+    <span class="body__largestrong">Editar mi información</span> <span class="icono-editar">✎</span>
+  </div>
+
+  <form [formGroup]="form" (ngSubmit)="guardarCambios()">
+    <label>
+      <span class="body__large">Nombre</span>
+      <input formControlName="nombre" type="text" class="body__small"/>
+    </label>
+
+    <hr class="separador">
+
+    <div class="form-row">
+      <label>
+        <span class="body__large">Nacionalidad</span>
+        <select class="body__small" formControlName="nacionalidadId">
+          <option *ngFor="let n of nacionalidades" [value]="n.idNacionalidad" class="body__small">{{ n.nacionalidad }}</option>
+        </select>
+      </label>
+
+      <label>
+        <span class="body__large">Género</span>
+        <select class="body__small" formControlName="genero">
+          <option *ngFor="let g of generos" [value]="g.value" class="body__small">{{ g.label }}</option>
+        </select>
+      </label>
+    </div>
+
+    <hr class="separador">
+
+    <!-- SECCIÓN SEGURIDAD -->
+    <div class="seguridad">
+      <span class="body__largestrong">Seguridad</span>
+    </div>
+    <div class="seguridad">
+      <button type="button" (click)="irARecuperarContrasena()"><span class="body__medium">Recuperar contraseña</span></button>
+    </div>
+
+    <button type="submit"><span class="body__medium">Guardar cambios</span></button>
+  </form>
+
+  
+</div>
+<!-- TOAST -->
+<div class="toast" *ngIf="toastVisible">
+  <span class="check-icon">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+          <path d="M5 13l4 4L19 7" stroke="white" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+  </span>
+  {{ toastMessage }}
+</div>

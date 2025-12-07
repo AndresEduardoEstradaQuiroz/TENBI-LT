@@ -1,0 +1,53 @@
+<div class="compartir-overlay" (click)="cerrar()">
+  <div class="compartir-container" (click)="$event.stopPropagation()">
+
+    <h3 class="titulo"><span class="body__largestrong">Compartir en</span></h3>
+
+    <!-- Input + Copiar -->
+    <div class="link-box">
+      <input #inputLink 
+       type="text"
+       [attr.value]="linkGenerado"
+        />
+
+
+      <button class="btn-copiar" (mousedown)="copiar()">
+        <img src="assets/icons/enlace.svg" alt="Enlace">
+        <span class="body__medium"> Copiar link </span> 
+      </button>
+    </div>
+
+    <hr />
+
+    <!-- Íconos redes -->
+    <div class="social-row">
+      <button class="social-btn" (click)="shareWhatsApp()">
+  <img src="assets/icons/whatsapp.svg" alt="WhatsApp">
+</button>
+
+<button class="social-btn" (click)="shareInstagram()">
+  <img src="assets/icons/instagram.svg" alt="Instagram">
+</button>
+
+<button class="social-btn" (click)="shareMessenger()">
+  <img src="assets/icons/messenger.svg" alt="Messenger">
+</button>
+
+<button class="social-btn" (click)="shareFacebook()">
+  <img src="assets/icons/facebook.svg" alt="Facebook">
+</button>
+
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" *ngIf="toastVisible">
+    <span class="check-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path d="M5 13l4 4L19 7" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+    </span>
+    {{ toastMessage }}
+    </div>
+
+  </div>
+</div>

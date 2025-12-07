@@ -1,0 +1,34 @@
+<main id="favoritos-page">
+  <app-header [titulo]="'Favoritos'"></app-header>
+
+  <section id="content">
+    <section id="proyects-main">
+      
+      <h3 class="section-title heading__small">Tus líneas de tiempo favoritas</h3>
+
+      <div id="timelines-content-wrapper">
+        <div class="cards-grid">
+
+          <app-timeline-card
+            *ngFor="let linea of favoritas"
+            [idLinea]="linea.idLineaTiempo"
+            [imagen]="linea.imagenPortada ? ('http://localhost:8080' + linea.imagenPortada) : 'assets/default.jpg'"
+            [titulo]="linea.titulo"
+            [autor]="linea.usuario?.nombre || 'Tú'"
+            [fecha]="linea.fechaCreacion | date:'longDate'"
+            [tags]="linea.palabrasClave?.split(',') || []"
+            [esFavorita]="linea.esFavorita"
+            [mostrarFavorito]="true"
+            [mostrarOpciones]="false"
+            (clickFavorito)="toggleFavorito(linea)"
+            (marcarFavorito)="toggleFavorito(linea)"
+            (abrirLinea)="irALinea($event)"
+            >
+          </app-timeline-card>
+
+        </div>
+      </div>
+
+    </section>
+  </section>
+</main>

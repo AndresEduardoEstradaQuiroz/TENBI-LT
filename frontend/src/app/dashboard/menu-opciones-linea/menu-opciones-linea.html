@@ -1,0 +1,66 @@
+<div class="card-options" (click)="toggleMenu($event)">
+  <span>⋮</span>
+
+  <div class="options-menu" *ngIf="menuAbierto">
+
+    <!-- MODO NORMAL (COMPARTIR + ELIMINAR) -->
+    <ng-container *ngIf="modo === 'normal'">
+
+      <div class="option-item" (click)="clickCompartir($event)">
+        <span class="mi-icon">
+          <!-- share icon -->
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path d="M4 12v6a2 2 0 0 0 2 2h12" stroke="currentColor" stroke-width="1.6" />
+            <path d="M16 6l4 4-4 4" stroke="currentColor" stroke-width="1.4" />
+            <path d="M20 10h-8" stroke="currentColor" stroke-width="1.4" />
+          </svg>
+        </span>
+        <span class="body__medium">Compartir línea</span>
+      </div>
+
+      <div class="option-item" (click)="clickEliminar($event)">
+        <span class="mi-icon">
+          <!-- trash icon -->
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path d="M9.5 4h5" stroke="currentColor" stroke-width="1.8" />
+            <path d="M4 7h16" stroke="currentColor" stroke-width="1.8" />
+            <rect x="6" y="7" width="12" height="13" rx="2.2" stroke="currentColor" stroke-width="1.8" />
+            <path d="M10 11v6" stroke="currentColor" stroke-width="1.8" />
+            <path d="M14 11v6" stroke="currentColor" stroke-width="1.8" />
+          </svg>
+        </span>
+        <span class="body__medium">Eliminar línea</span>
+      </div>
+
+    </ng-container>
+
+    <!-- MODO ELIMINADO (RESTABLECER) -->
+    <ng-container *ngIf="modo === 'eliminado'">
+
+      <div class="option-item" (click)="clickRestaurar($event)">
+        <span class="mi-icon">
+          <!-- restore icon -->
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path d="M12 5v6l4 2" stroke="currentColor" stroke-width="1.6"/>
+            <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/>
+          </svg>
+        </span>
+        <span class="body__medium">Restaurar línea</span>
+      </div>
+      <div class="option-item" (click)="clickEliminarDefinitivo($event)">
+        <span class="mi-icon">
+        <!-- delete forever icon -->
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path d="M4 7h16" stroke="currentColor" stroke-width="1.8"/>
+            <rect x="6" y="7" width="12" height="13" rx="2.2" stroke="currentColor" stroke-width="1.8"/>
+            <path d="M9 11l6 6" stroke="currentColor" stroke-width="1.8"/>
+            <path d="M15 11l-6 6" stroke="currentColor" stroke-width="1.8"/>
+        </svg>
+        </span>
+        <span class="body__medium">Eliminar definitivamente</span>
+    </div>
+
+    </ng-container>
+
+  </div>
+</div>

@@ -1,0 +1,248 @@
+.plantilla-minimalista {
+  text-align: center;
+  padding: 40px 10px;
+  font-family: 'Inter', sans-serif;
+
+  h1 {
+    font-size: 2.4rem;
+    font-weight: bolder;
+    margin-bottom: 10px;
+  }
+
+  .tema {
+    font-weight: 650;
+    color: #444;
+  }
+
+  .descripcion {
+    max-width: 650px;
+    margin: 0 auto 50px auto;
+    color: #666;
+  }
+
+  .timeline {
+    position: relative;
+    width: 100%;
+    padding: 320px 0 200px;
+
+    /* Línea punteada con bolitas en los extremos */
+    .linea-central {
+      position: absolute;
+      top: 62%;
+      left: 60px;
+      right: 60px;
+      height: 3px;
+      background: repeating-linear-gradient(to right,
+          #cfcfd6 0,
+          #cfcfd6 12px,
+          transparent 12px,
+          transparent 22px);
+      z-index: 1;
+
+      /* Bolitas de los extremos */
+      &::before,
+      &::after {
+        content: "";
+        width: 18px;
+        height: 18px;
+        background: #d0d1d9;
+        border-radius: 50%;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      &::before {
+        left: -25px;
+      }
+
+      &::after {
+        right: -25px;
+      }
+    }
+
+    .items {
+      display: flex;
+      justify-content: space-between;
+      padding: 0 60px;
+
+      .item {
+        position: relative;
+        flex: 1;
+        text-align: center;
+
+        /* Año */
+        .ano {
+          position: absolute;
+          left: 50%;
+          transform: translateX(-50%);
+          padding: 6px 14px;
+          border-radius: 8px;
+          font-size: 1rem;
+          font-weight: 700;
+          color: white;
+          z-index: 3;
+        }
+
+        /* Línea del año al punto */
+        .linea-conector {
+          width: 4px;
+          height: 50px;
+          position: absolute;
+          left: 50%;
+          transform: translateX(-50%);
+          z-index: 2;
+          border-radius: 2px;
+        }
+
+        /* Punto con círculo interior */
+        .punto {
+          width: 36px;
+          height: 36px;
+          background: white;
+          border-radius: 50%;
+          border: 4px solid;
+          position: absolute;
+          left: 50%;
+          transform: translateX(-50%);
+          z-index: 4;
+
+          /* Círculo interior más pequeño */
+          &::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 10px;
+            /* más pequeño */
+            height: 10px;
+            /* más pequeño */
+            background: rgb(156, 156, 157);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+          }
+        }
+
+
+        /* Contenido del hito */
+        .contenido {
+          width: 260px;
+          position: absolute;
+          left: 50%;
+          transform: translateX(-50%);
+          padding: 10px;
+
+          h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+          }
+
+          .texto {
+            font-size: 0.9rem;
+            color: #444;
+            line-height: 1.35rem;
+          }
+
+          img.img-hito {
+          width: 120px;         /* antes 160px -> reducida */
+          height: 120px;        /* mantener cuadrado para borde circular */
+          object-fit: cover;
+          border-radius: 50%;
+          border: 6px solid;   /* color dinámico desde [style.border-color] */
+          display: block;
+          margin: 12px auto 12px; /* margen superior e inferior */
+          box-shadow: 0 6px 18px rgba(0,0,0,0.08); /* opcional: sombra suave */
+          transition: transform 0.25s ease;
+        }
+
+
+        }
+
+        /* ---------------------
+          INTERCALADO REAL
+        ---------------------- */
+
+        /* HITO ARRIBA */
+        /* HITO ARRIBA */
+        &.arriba {
+
+          /* Año arriba */
+          .ano {
+            top: calc(50% - 100px);
+          }
+
+          /* Línea del año al punto */
+          .linea-conector {
+            top: calc(50% - 66px);
+          }
+
+          /* Punto centrado */
+          .punto {
+            top: calc(50% - 18px);
+          }
+
+          /* Contenido arriba */
+          .contenido {
+            bottom: calc(50% + 90px);
+          }
+        }
+
+        /* HITO ABAJO */
+        &.abajo {
+
+          /* Año abajo */
+          .ano {
+            top: calc(50% + 60px);
+          }
+
+          .linea-conector {
+            top: calc(50% + 10px);
+          }
+
+          .punto {
+            top: calc(50% - 18px);
+          }
+
+          /* Contenido abajo */
+          .contenido {
+            top: calc(50% + 120px);
+          }
+        }
+
+      }
+    }
+  }
+}
+
+/* 3) Ajustes móviles: aún más pequeña la imagen y mayor separación */
+@media (max-width: 768px) {
+  .timeline { padding: 220px 0 120px; } /* menos, porque la pantalla es más pequeña */
+
+  .contenido img.img-hito {
+    width: 96px;
+    height: 96px;
+    border-width: 4px;
+    margin: 10px auto 12px;
+  }
+}
+.link-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 4px;
+  color: #333;
+  text-decoration: none;
+  transition: transform .2s ease, color .2s ease;
+
+  svg {
+    width: 15px;
+    height: 15px;
+  }
+
+  &:hover {
+    transform: scale(1.15);
+    color: #000;
+  }
+}
+

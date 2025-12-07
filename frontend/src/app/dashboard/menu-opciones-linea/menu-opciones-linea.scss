@@ -1,0 +1,63 @@
+.card-title-and-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* Alinea el título y los 3 puntos en la parte superior */
+    gap: var(--Spacers-spacer-2);
+    display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card-options {
+    color: var(--⭐-text-default-secondary);
+    font-size: 1.5em; /* Aumentamos el tamaño para que sea un ícono más claro */
+    cursor: pointer;
+    position: relative;
+    line-height: 0.5; 
+    font-weight: bold;
+    padding: 4px;
+    border-radius: var(--Radius-radius-m);
+    transition: background-color .15s;
+    margin-top: 5px; /* Pequeño ajuste para centrar verticalmente con el título */
+    
+}
+
+.card-options:hover {
+    background-color: var(--🎨-grey-100); /* Un ligero hover */
+}
+
+.card-title {
+    /* Aseguramos que el título tome el espacio restante */
+    flex-grow: 1; 
+    margin: 0;
+    font: 600 var(--text-lg)/1.3 var(--family-default);
+}
+.options-menu {
+  width: 259px;
+  height: auto;
+  background-color: var(--⭐-bg-default-default);
+  border-radius: var(--Radius-radius-xl);
+  box-shadow: var(--effect-light-elevation-500);
+  position: absolute;
+  right: 0;
+  top: 28px;
+  padding: 12px 12px;
+  z-index: 9999 !important; 
+}
+
+.option-item {
+  width: auto;
+  height: 48px;
+  padding: 14px 10px;
+  border-radius: var(--Radius-radius-xl);
+  font-size: 14px;
+  color:var(--⭐-text-default-secondary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.option-item:hover {
+  background: var(--⭐-bg-default-hover)
+}

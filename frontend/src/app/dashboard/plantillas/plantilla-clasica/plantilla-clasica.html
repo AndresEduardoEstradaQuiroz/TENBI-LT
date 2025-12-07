@@ -1,0 +1,67 @@
+<div class="plantilla-clasica">
+  <h1>{{ linea?.titulo }}</h1>
+  <p class="tema">{{ linea?.tema?.nombreTema }}</p>
+  <p class="descripcion">{{ linea?.descripcion }} 
+    <a class="link-icon" [href]="linea?.url" target="_blank">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+          </svg>
+          </a> 
+  </p>
+  
+
+  <div class="timeline-wrapper">
+    <div class="timeline-container">
+
+      <!-- FILA DE HITOS -->
+      <div class="milestones-row">
+
+        <!-- CADA HITO -->
+        <div class="milestone-item" *ngFor="let hito of linea?.hitos; let i = index">
+
+          <!-- CÍRCULO DEL HITO -->
+          <div class="milestone-indicator">
+            {{ i + 1 }}
+          </div>
+
+          <!-- TARJETA -->
+          <div class="timeline-card">
+
+            <ng-container *ngIf="hito.imagenHito && hito.imagenHito.trim() !== ''">
+            <img
+              class="img-hito"
+              [src]="'http://localhost:8080' + hito.imagenHito"
+              alt="img-hito"
+              (error)="hito.imagenHito = ''"
+            />
+          </ng-container>
+
+
+            <h3>{{ hito.tituloHito }}</h3>
+
+            <p class="fecha">
+              {{ formatearFecha(hito.dia, hito.mes, hito.anio) }}
+            </p>
+
+
+            <p class="descripcion-hito">{{ hito.descripcionHito }}</p>
+
+            <a class="link-icon" [href]="hito.url" target="_blank">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+          </svg>
+          </a>
+
+          </div>
+
+        </div>
+        <!-- FIN HITO -->
+
+      </div>
+      <!-- FIN ROW -->
+
+    </div>
+  </div>
+</div>

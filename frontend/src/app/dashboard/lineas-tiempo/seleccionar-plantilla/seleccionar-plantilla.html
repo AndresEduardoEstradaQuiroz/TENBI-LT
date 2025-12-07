@@ -1,0 +1,54 @@
+<h2 class="titulo">Selecciona una Plantilla</h2>
+<p class="subtitulo">Elige el diseño que mejor se adapte a tus necesidades</p>
+
+<div class="contenedor">
+  <!-- LISTA DE PLANTILLAS -->
+  <div class="lista-plantillas">
+    <div 
+      class="plantilla-card"
+      *ngFor="let p of plantillas"
+      [class.selected]="p === plantillaSeleccionada"
+      (click)="seleccionar(p)"
+    >
+      <div class="fondo" [style.background]="p.color"></div>
+
+      <div class="info">
+        <h3>{{ p.nombre }}</h3>
+        <p class="descripcion">{{ p.descripcion }}</p>
+      </div>
+
+      <div class="check" *ngIf="p === plantillaSeleccionada">
+        ✔
+      </div>
+    </div>
+  </div>
+
+  <!-- PANEL DE VISTA PREVIA -->
+  <div class="vista-previa" *ngIf="plantillaSeleccionada">
+    <h3 class="vp-title">👁 Vista Previa</h3>
+
+    <div class="preview-area" [style.background]="plantillaSeleccionada.color">
+      <div class="mock-header"></div>
+      <div class="mock-line"></div>
+      <div class="mock-line small"></div>
+      <div class="mock-card"></div>
+    </div>
+
+    <h2>{{ plantillaSeleccionada.nombre }}</h2>
+    <p>{{ plantillaSeleccionada.descripcion }}</p>
+  </div>
+</div>
+
+<div class="actions" *ngIf="modo === 'crear'">
+  <button class="volver" (click)="volver()">Volver</button>
+  <button class="generar" (click)="generar()" [disabled]="!plantillaSeleccionada">
+    Generar
+  </button>
+</div>
+
+<div class="actions" *ngIf="modo === 'editar'">
+  <button class="volver" (click)="cerrarPlantilla.emit()">Cancelar</button>
+  <button class="generar" (click)="generar()" [disabled]="!plantillaSeleccionada">
+    Cambiar Plantilla
+  </button>
+</div>

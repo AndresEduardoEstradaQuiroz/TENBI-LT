@@ -1,0 +1,204 @@
+.ajustes-titulo {
+  text-align: center;
+  font-size: 1.5rem;
+  margin: 0.6rem 0.6rem;
+  font-weight: 600;
+  color: #333;
+}
+/* --- TOAST GLOBAL --- */
+.toast {
+  position: fixed;
+  top: 78%;
+  left: 56%;
+  transform: translateX(-50%) scale(0.95);
+  background: #1e1e1e;
+  color: #fff;
+  padding: 14px 16px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  font-weight: 500;
+  z-index: 9999;
+
+  opacity: 0;
+  animation: toastInOut 3s ease forwards;
+  box-shadow: 0px 8px 35px rgba(0, 0, 0, 0.35);
+}
+
+.check-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@keyframes toastInOut {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-15px) scale(0.9);
+  }
+  10% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0px) scale(1);
+  }
+  80% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0px) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-10px) scale(0.95);
+  }
+}
+
+
+.ajustes-container {
+  max-width: 850px;
+  margin: 1rem auto;
+  padding: 50px;
+  background-color: #fff;
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  .foto-perfil {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #e0e0e0;
+    }
+
+    .foto-info {
+      flex: 1;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      div {
+        font-size: 0.9rem;
+        color: #555;
+
+        span {
+          display: block;
+          color: #4a4949;
+          gap: 1px;
+        }
+      }
+
+      .upload-btn {
+        padding: 12px 18px;
+        background-color: var(--⭐-bg-brand-pressed);
+        color: #fff;
+        border: none;
+        border-radius: 18px;
+        cursor: pointer;
+        font-size: 0.9rem;
+        transition: background-color 0.2s;
+
+        &:hover {
+          background-color: var(--⭐-bg-brand-secondary);
+        }
+      }
+    }
+  }
+
+  .separador {
+    border: 3px;
+    height: 2px;
+    background-color: #a9a9a9;
+    margin: 1.2rem 0;
+  }
+
+  .editar-info {
+    display: flex;
+    align-items: center;
+    color: #333;
+
+    .icono-editar {
+      margin-left: 0.5rem;
+      font-size: 0.9rem;
+      cursor: pointer;
+      color: #666;
+    }
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    label {
+      display: flex;
+      flex-direction: column;
+      color: #555;
+
+      input, select {
+        margin-top: 1rem;
+        padding: 0.5rem 0.75rem;
+        border: 1px solid #ccc;
+        border-radius: 14px;
+        background-color: #f9f9f9;
+        font-size: 0.90rem;
+        outline: none;
+        transition: border-color 0.2s;
+
+        &:focus {
+          border-color: var(--⭐-text-brand-secondary);
+          background-color: #fff;
+        }
+      }
+    }
+
+    .form-row {
+      display: flex;
+      gap: 1rem;
+
+      label {
+        flex: 1;
+      }
+    }
+
+    button[type="submit"] {
+      margin-top: 1rem;
+      padding: 14px 18px;
+      background-color: var(--⭐-bg-accent-pressed);
+      color: #fff;
+      border: none;
+      border-radius: 18px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.2s;
+
+      &:hover {
+        background-color: var(--⭐-bg-accent-secondary);
+      }
+    }
+  }
+
+  .seguridad {
+    display: flex;
+    align-items: center;
+
+    button {
+    
+      color: var(--⭐-bg-brand-pressed);
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+      transition: color 0.2s;
+
+      &:hover {
+        color: var(--⭐-bg-brand-secondary);
+      }
+    }
+  }
+}

@@ -1,0 +1,18 @@
+<div *ngIf="cargando" class="cargando-publico">
+  Cargando línea pública...
+</div>
+
+<div *ngIf="error" class="error-publico">
+  <h2>Enlace no válido o expirado</h2>
+  <p>La línea que intentas ver no existe o el enlace ya no es público.</p>
+</div>
+
+<div *ngIf="!cargando && !error" class="contenedor-publico">
+
+  <app-render-plantilla 
+  [linea]="linea"
+  [plantillaId]="linea.plantilla">
+</app-render-plantilla>
+
+
+</div>

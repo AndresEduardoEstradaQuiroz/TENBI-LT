@@ -1,0 +1,8 @@
+<div class="modal-overlay" (click)="cerrar()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <button class="modal-close" (click)="cerrar()">×</button>
+    <app-crear-linea-tiempo (cerrarModal)="cerrar($event)"
+    (abrirPlantilla)="onAbrirPlantilla()"></app-crear-linea-tiempo>
+  </div>
+</div>
+

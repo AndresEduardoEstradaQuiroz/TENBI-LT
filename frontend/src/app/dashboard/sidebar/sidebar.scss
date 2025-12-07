@@ -1,0 +1,222 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html { font-family: var(--family-default); }
+
+body {
+  min-height: 100vh;
+  min-height: 100dvh;
+  background-color: var(--🎨-grey-100);
+  padding: var(--Spacers-spacer-6) var(--Spacers-spacer-6) var(--Spacers-spacer-6) 0px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--Spacers-spacer-6);
+}
+
+/* ========== Divider ========== */
+.nav-divider {
+  height: 1px;
+  background-color: var(--⭐-border-default-default);
+}
+
+/* ========== Collapse Button ========== */
+#colapse-btn svg { 
+  transition: rotate 200ms ease; 
+}
+
+.rotate svg:last-child { 
+  rotate: -180deg; 
+}
+
+/* ========== Sidebar ========== */
+#sidebar {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacers-spacer-6);
+
+  width: 280px;
+  padding: var(--Spacers-spacer-6);
+  border-radius: 0px var(--Radius-radius-xxl) var(--Radius-radius-xxl) 0px; 
+  box-shadow: var(--effect-light-elevation-400);
+  background-color: var(--⭐-bg-default-default);
+
+  position: sticky;
+  align-self: center;
+  height: 100%;  //agreegue yo
+  transition: width 300ms ease, padding 300ms ease;
+  text-wrap: nowrap;
+}
+
+#sidebar.close {
+  padding-block: var(--Spacers-spacer-6);
+  padding-inline: var(--Spacers-spacer-4);
+  width: 84px;
+}
+
+#sidebar.close #logo_svg {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  width: 0;
+  height: 44px;
+}
+
+#sidebar.close li:hover {
+  background-color: var(--⭐-bg-selected-secondary);
+}
+#sidebar.close li:hover > a {
+  color: var(--⭐-text-default-hover);
+}
+#sidebar.close li#logout-option:hover {
+  background-color: var(--⭐-bg-danger-tertiary);
+}
+#sidebar.close li#logout-option:hover > a > svg {
+  color: var(--⭐-icon-danger-hover);
+}
+
+/* ========== Header y Logo ========== */
+#logo_wrap {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr; 
+  align-items: center;
+  margin-bottom: var(--Spacers-spacer-3);
+  min-height: 44px;
+}
+
+#logo_svg { grid-column: 1; justify-self: start; }
+
+#colapse-btn { 
+  grid-column: 3; 
+  justify-self: end; 
+}
+
+#sidebar.close #colapse-btn { 
+  grid-column: 2; 
+  justify-self: center;
+}
+
+#colapse-btn {
+  width: 24px;
+  height: 24px;
+  border-radius: 100%;
+  border: 1px solid var(--⭐-border-brand-default);
+  text-align: center;
+  padding-right: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#colapse-btn svg { display: block; }
+
+#sidebar.close #colapse-btn {
+  justify-self: center;
+  padding-left: 2px;
+  padding-right: 0;
+}
+
+#sidebar.close #colapse-btn svg { transform: translateX(0); }
+
+/* ========== Secciones ========== */
+#sidebar svg { flex-shrink: 0; }
+
+#sidebar ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacers-spacer-1);
+}
+
+#sidebar li a svg path {
+  fill: currentColor;
+  transition: fill 0.3s ease;
+}
+
+/* ========== Items ========== */
+#sidebar li {
+  border-radius: var(--Radius-radius-xl);
+  padding: var(--Spacers-spacer-4);
+  transition: background-color 0.5s ease;
+}
+
+#sidebar li > a {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-decoration: none;
+  gap: var(--Spacers-spacer-3);
+  transition: gap 0.5s ease;
+  cursor: pointer; /* Solución */
+}
+
+#sidebar li > a:hover {
+  opacity: 0.9;
+  transition: opacity 0.2s ease;
+}
+
+#sidebar li > a > svg {
+  width: 20px;
+  height: 20px;
+  flex: 0 0 20px;
+  color: var(--⭐-icon-default-secondary);
+  transition: color 0.3s ease;
+}
+
+#sidebar li > a > span {
+  color: var(--⭐-text-default-secondary);
+  margin-inline-start: var(--Spacers-spacer-3);
+  transition: margin-inline-start 0.5s ease, color 0.5s ease, max-width 0.3s ease, opacity 0.2s ease;
+}
+
+
+#sidebar:not(.close) li:not(.selected, #logout-option):hover {
+  background-color: var(--⭐-bg-selected-secondary);
+}
+#sidebar:not(.close) li:not(.selected, #logout-option):hover > a {
+  gap: var(--Spacers-spacer-4);
+}
+#sidebar:not(.close) li:not(.selected, #logout-option):hover > a > span {
+  margin-inline-start: var(--Spacers-spacer-4);
+}
+#sidebar:not(.close) li:not(.selected, #logout-option):hover > a > span,
+#sidebar:not(.close) li:not(.selected, #logout-option):hover > a > svg {
+  color: var(--⭐-text-default-hover);
+}
+
+/* ========== Seleccionado ========== */
+#sidebar li.selected {
+  background-color: var(--⭐-bg-selected-secondary);
+}
+#sidebar li.selected span { color: var(--⭐-icon-default-pressed); }
+#sidebar li.selected svg  { color: var(--⭐-icon-brand-pressed); }
+
+#sidebar:not(.close) li#logout-option:hover {
+  background-color: var(--⭐-bg-danger-tertiary);
+}
+
+#sidebar:not(.close) li#logout-option:hover > a {
+  gap: var(--Spacers-spacer-4);
+}
+#sidebar:not(.close) li#logout-option:hover > a > span,
+#sidebar:not(.close) li#logout-option:hover > a > svg {
+  color: var(--⭐-icon-danger-hover);
+}
+
+/* ========== Items Colapsados ========== */
+#sidebar.close ul li > a {
+  justify-content: flex-start;
+  padding-left: 0px;
+  gap: 0;
+  transition: color 0.5s ease;
+}
+
+#sidebar.close ul li > a > span {
+  margin-inline-start: 0;
+  max-width: 0;
+  opacity: 0;
+  visibility: hidden;
+}

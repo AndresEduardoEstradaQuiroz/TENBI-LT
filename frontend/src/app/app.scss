@@ -1,0 +1,34 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+:root {
+  /* Paleta de Colores de Tenbi */
+  --color-primary: #5c3894; 
+  --color-accent: #f58440; 
+  --color-google: #4285f4; 
+  --color-light-gray: #f0f4f8; 
+  --color-text-dark: #222;
+  --color-text-light: #555;
+  --color-white: #fff;
+
+  /* Tipografía */
+  --font-family-primary: 'Poppins', sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-family-primary);
+  color: var(--color-text-dark);
+  background-color: var(--color-white);
+  line-height: 1.6;
+}
+
+/* Reseteo básico para botones */
+button {
+  cursor: pointer;
+  border: none;
+  font-family: inherit;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}

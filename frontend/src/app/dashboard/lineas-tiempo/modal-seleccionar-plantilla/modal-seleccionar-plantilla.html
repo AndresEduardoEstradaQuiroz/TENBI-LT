@@ -1,0 +1,9 @@
+<div class="modal-overlay" (click)="cerrar()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <button class="modal-close" (click)="cerrar()">×</button>
+    <app-seleccionar-plantilla 
+      (cerrarPlantilla)="cerrar()" 
+      (volverFormulario)="volver()">
+    </app-seleccionar-plantilla>
+  </div>
+</div>

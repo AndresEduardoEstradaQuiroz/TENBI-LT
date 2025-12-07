@@ -1,0 +1,143 @@
+<div class="card-wrapper">
+
+    <div class="top-card-proyect">
+
+        <div class="card-hero" (click)="abrirLinea.emit(idLinea)">
+            <ng-container *ngIf="imagen && imagen.trim() !== ''; else sinPortada">
+                <img [src]="imagen" alt="imagen-portada" (error)="imagen = ''" />
+            </ng-container>
+
+            <ng-template #sinPortada>
+                <div class="placeholder">Sin portada</div>
+            </ng-template>
+        </div>
+
+        <div class="card-content" (click)="abrirLinea.emit(idLinea)">
+            <div class="card-description">
+                <p class="meta-info body__small">
+                    {{ autor }} <span class="dot">·</span> {{ fecha }}
+                </p>
+
+                <div class="card-title-and-options">
+                    <h1 class="card-title heading__medium">{{ titulo }}</h1>
+
+                    <!-- FAVORITO -->
+                    <button *ngIf="mostrarFavorito" class="btn-fav-inline" [ngClass]="{ 'activo': esFavorita === 'S' }"
+                        (click)="clickFavorito($event)">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                            <path d="M12 2l3.1 6.3L22 9.2l-5 5 1.2 7-6.2-3.5L5 21.2 6.2 14 1 9.2l6.9-1z"
+                                stroke="#2d436e" stroke-width="1.5"
+                                [attr.fill]="esFavorita === 'S' ? '#FFD700' : 'white'" />
+                        </svg>
+                    </button>
+
+                    <!-- ME GUSTA -->
+                    <div class="action-wrapper" *ngIf="mostrarMeGusta">
+                        <div class="reaction-wrapper">
+                            <div class="like-reaction" *ngIf="showLikeAnimation">
+                                <div class="heart heart-1">
+                                    <svg viewBox="0 0 24 24">
+                                        <path d="M12 21s-6-4.3-9-8.5C-1.2 7.4 1.6 2 6.3 2c2.2 0 4.1 1.2 5.2 3 
+               1.1-1.8 3-3 5.2-3 4.7 0 7.5 5.4 3.3 10.5C18 16.7 12 21 12 21z" fill="#ff4b4b" />
+                                    </svg>
+                                </div>
+
+                                <div class="heart heart-2">
+                                    <svg viewBox="0 0 24 24">
+                                        <path d="M12 21s-6-4.3-9-8.5C-1.2 7.4 1.6 2 6.3 2c2.2 0 4.1 1.2 5.2 3 
+               1.1-1.8 3-3 5.2-3 4.7 0 7.5 5.4 3.3 10.5C18 16.7 12 21 12 21z" fill="#ff7a7a" />
+                                    </svg>
+                                </div>
+
+                                <div class="heart heart-3">
+                                    <svg viewBox="0 0 24 24">
+                                        <path d="M12 21s-6-4.3-9-8.5C-1.2 7.4 1.6 2 6.3 2c2.2 0 4.1 1.2 5.2 3 
+               1.1-1.8 3-3 5.2-3 4.7 0 7.5 5.4 3.3 10.5C18 16.7 12 21 12 21z" fill="#ff9999" />
+                                    </svg>
+                                </div>
+                            </div>
+
+                        </div>
+                        <button class="btn-like" (click)="toggleMeGusta($event)">
+                            <ng-container *ngIf="likeActivo === 'S'; else likeOff">
+                                <svg width="20" height="20" viewBox="0 0 24 24">
+                                    <path d="M12 21s-6-4.3-9-8.5C-1.2 7.4 1.6 2 6.3 2c2.2 0 4.1 1.2 5.2 3 
+                                           1.1-1.8 3-3 5.2-3 4.7 0 7.5 5.4 3.3 10.5C18 16.7 12 21 12 21z"
+                                        fill="#ff4b4b" />
+                                </svg>
+                            </ng-container>
+
+                            <ng-template #likeOff>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                    <path d="M12 21s-6-4.3-9-8.5C-1.2 7.4 1.6 2 6.3 2c2.2 0 4.1 1.2 5.2 3 
+                                           1.1-1.8 3-3 5.2-3 4.7 0 7.5 5.4 3.3 10.5C18 16.7 12 21 12 21z"
+                                        stroke="#2d436e" stroke-width="1.5" fill="white" />
+                                </svg>
+                            </ng-template>
+                        </button>
+                        <span class="contador">{{ likeCount }}</span>
+                    </div>
+
+                    <!-- GUARDAR -->
+                    <div class="action-wrapper" *ngIf="mostrarGuardado">
+                        <button class="btn-save" (click)="toggleGuardado($event)">
+                            <ng-container *ngIf="saveActivo === 'S'; else saveOff">
+                                <svg width="20" height="20" viewBox="0 0 12 17">
+                                    <path d="M10.375 0.270081H1.625C1.2106 0.270081 0.813171 0.434701 
+                                           0.520146 0.727726C0.22712 1.02075 0.0625001 1.41818 
+                                           0.0625001 1.83258V15.5826C0.0624439 15.75 0.107198 15.9143 
+                                           0.192114 16.0585C0.277031 16.2028 0.399013 16.3216 
+                                           0.545392 16.4028C0.691772 16.484 0.857211 16.5245 
+                                           1.02453 16.5201C1.19185 16.5157 1.35494 16.4666 
+                                           1.49688 16.3779L5.99922 13.5654L10.5031 16.3779
+                                           C10.6451 16.4666 10.8082 16.5157 10.9755 16.5201
+                                           C11.1428 16.5245 11.3082 16.484 11.4546 16.4028
+                                           C11.601 16.3216 11.723 16.2028 11.8079 16.0585
+                                           C11.8928 15.9143 11.9376 15.75 11.9375 15.5826V1.83258Z" fill="#2d436e" />
+                                </svg>
+                            </ng-container>
+
+                            <ng-template #saveOff>
+                                <svg width="20" height="20" viewBox="0 0 12 17" fill="none">
+                                    <path d="M10.375 0.270081H1.625C1.2106 0.270081 0.813171 0.434701 
+                                           0.520146 0.727726C0.22712 1.02075 0.0625001 1.41818 
+                                           0.0625001 1.83258V15.5826C0.0624439 15.75 0.107198 15.9143 
+                                           0.192114 16.0585C0.277031 16.2028 0.399013 16.3216 
+                                           0.545392 16.4028C0.691772 16.484 0.857211 16.5245 
+                                           1.02453 16.5201C1.19185 16.5157 1.35494 16.4666 
+                                           1.49688 16.3779L5.99922 13.5654L10.5031 16.3779
+                                           C10.6451 16.4666 10.8082 16.5157 10.9755 16.5201
+                                           C11.1428 16.5245 11.3082 16.484 11.4546 16.4028
+                                           C11.601 16.3216 11.723 16.2028 11.8079 16.0585
+                                           C11.8928 15.9143 11.9376 15.75 11.9375 15.5826V1.83258Z" stroke="#2d436e"
+                                        stroke-width="1.2" fill="white" />
+                                </svg>
+                            </ng-template>
+                        </button>
+                        <span class="contador">{{ saveCount }}</span>
+                    </div>
+                    <app-menu-opciones-linea 
+                        *ngIf="mostrarOpciones"
+                        [idLinea]="idLinea"
+                        [modo]="modoOpciones"
+                        (restaurar)="restaurar.emit($event)"
+                        (eliminarDefinitivo)="clickEliminarDefinitivo($event)"
+                        (compartir)="clickCompartir(idLinea)"
+                        (eliminar)="clickEliminar(idLinea)">
+                    </app-menu-opciones-linea>
+
+                </div>
+            </div>
+
+            <div class="card-bottom" (click)="abrirLinea.emit(idLinea)">
+                <div class="card-tags">
+                    <div class="card-tag body__small" *ngFor="let tag of tags; let i = index"
+                        [ngClass]="i % 2 === 0 ? 'tag-orange' : 'tag-blue'">
+                        {{ tag }}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

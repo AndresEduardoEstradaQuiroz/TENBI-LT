@@ -1,0 +1,42 @@
+<main id="eliminados-page">
+  <app-header [titulo]="'Eliminados'"></app-header>
+
+  <section id="content">
+    <section id="proyects-main">
+      <h3 class="section-title heading__small">Cuando quieras puedes restaurarlas</h3>
+
+      <!-- Loader -->
+      <div *ngIf="cargando" class="loader">
+        Cargando líneas eliminadas…
+      </div>
+
+      <!-- Si no hay eliminados -->
+      <div *ngIf="!cargando && lineasEliminadas.length === 0" class="empty">
+        <p>No tienes líneas en la papelera.</p>
+      </div>
+
+      <div class="cards-grid" *ngIf="lineasEliminadas.length > 0">
+        <app-timeline-card 
+          *ngFor="let linea of lineasEliminadas"
+          [idLinea]="linea.idLineaTiempo"
+          [imagen]="linea.imagenPortada ? ('http://localhost:8080' + linea.imagenPortada) : 'assets/default.jpg'"
+          [titulo]="linea.titulo"
+          [autor]="linea.usuario?.nombre || 'Desconocido'"
+          [fecha]="linea.fechaCreacion | date:'longDate'"
+          [tags]="linea.palabrasClave?.split(',') || []"
+
+          [mostrarOpciones]="true"
+          [mostrarMeGusta]="false"
+          [mostrarGuardado]="false"
+          [mostrarFavorito]="false"
+          [modoOpciones]="'eliminado'"
+          (restaurar)="restaurarLinea($event)"
+          (eliminarDefinitivo)="eliminarDefinitiva($event)">
+
+        </app-timeline-card>
+      </div>
+
+    </section>
+  </section>
+</main>
+<app-notificacion-modal #notif></app-notificacion-modal>

@@ -1,0 +1,227 @@
+
+
+$google: var(--color-google);
+$primary: var(--color-primary); // Púrpura
+$accent: var(--color-accent); // Naranja
+$white: var(--color-white); // Blanco
+$light-gray: var(--color-light-gray); // Gris claro
+$text-dark: var(--color-text-dark);
+$text-light: var(--color-text-light);
+
+/*  HEADER (Barra de Navegación)  */
+.header {
+    display: flex;
+    justify-content: space-between; /* Mantiene el logo a la izquierda y los botones a la derecha */
+    align-items: center;
+    padding: 20px 80px;
+    //height: 40px; 
+}
+
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    .logo {
+        height: 220px; 
+        margin-top: 50px;
+        margin-right: 6px;
+    }
+    .logo-text {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: $primary;
+    }
+}
+
+/* NUEVA UBICACIÓN PARA LOS BOTONES DE NAVEGACIÓN */
+.nav-buttons {
+    display: flex;
+    gap: 15px;
+    //margin-top:80px; /* Espacio entre los botones "Registrarme" e "Iniciar Sesión" */
+    align-items: center;
+    
+}
+/*  BOTONES GENERALES */
+.btn {
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-weight: 600;
+    //transition: background-color 0.2s; /* Añadido para mejor UX */
+    transition: all 0.3s ease;
+    text-shadow: none;
+
+
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+    &:active {
+
+        box-shadow: none;
+        transform: translateY(2px);
+    }
+}
+
+/* Botón "Iniciar sesión" */
+.btn-primary-light { 
+    background-color: #5585B5; 
+    color: $white;
+
+    box-shadow: 0 6px 10px rgba(64, 124, 245, 0.3); 
+    border: 1px solid #5585B5;
+    &:hover {
+        background-color: darken(#5585B5, 5%);
+    }
+}
+
+/* Botón "Registrar" (Contorno, fondo claro/blanco) */
+.btn-secondary-outline {
+    background-color: $white;
+    border: 1px solid $light-gray; 
+    color: $text-light; 
+    
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    &:hover {
+        background-color: #f0f4f8;
+        border-color: darken(#f0f4f8, 5%);
+    }
+}
+
+/* Seguir como invitado */
+.btn-guest {
+    $guest-color: lighten(#5585B5, 15%); 
+    background-color: $guest-color;
+    color: $white; 
+    padding: 12px 20px; 
+    border: 1px solid $guest-color;
+    box-shadow: 0 4px 6px rgba(85, 133, 181, 0.2); 
+
+    &:hover {
+        background-color: darken($guest-color, 5%);
+        border-color: darken($guest-color, 5%);
+    }
+}
+/* AJUSTE ADICIONAL: Logo */
+.logo-container {
+    .logo {
+
+        height: 44px;
+        margin-top: 0; 
+        margin-right: 6px;
+    }
+}
+/* LANDING CONTENT (Contenido principal)*/
+.landing-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 80px); 
+    padding: 0 80px;
+    gap: 80px;
+}
+
+/*  Sección de Texto  */
+.text-section {
+    flex: 1;
+    max-width: 500px;
+    h1 {
+        font-size: 3.5rem;
+        font-weight: 700;
+        margin-bottom: 20px;
+        line-height: 1.1;
+    }
+    .subtitle {
+        font-size: 1.25rem;
+        color: $text-light;
+        margin-bottom: 40px;
+    }
+}
+
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    max-width: 300px; 
+}
+
+/* Botón "Continuar con Google" */
+.btn-google {
+    background-color: var(--color-white); 
+    border: 1px solid #ddd;
+    color: $text-dark;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    
+    img {
+        width: 20px;
+        margin-right: 10px;
+    }
+    &:hover {
+        background-color: $light-gray;
+    }
+}
+
+/*  Sección de Imágenes  */
+.image-section {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    max-width: 600px;
+}
+
+.timeline-preview {
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    object-fit: contain;
+}
+
+.main-img {
+    width: 60%; 
+    height: auto;
+    z-index: 2;
+    margin-right: 0; 
+    margin-left: 0; 
+}
+
+.small-img {
+    width: 45%; 
+    height: auto;
+    position: absolute;
+    right: -60px; 
+    top: 50%; 
+    transform: translateY(-50%); 
+    z-index: 3; 
+}
+
+
+@media (max-width: 1200px) {
+    .landing-content {
+        flex-direction: column;
+        text-align: center;
+        padding: 40px 20px;
+    }
+
+    .header {
+        padding: 20px 20px;
+        flex-direction: column;
+        height: auto;
+    }
+    
+    .nav-buttons {
+        margin-top: 20px;
+        justify-content: center;
+    }
+
+    .image-section {
+        margin-top: 40px;
+    }
+
+    .text-section {
+        max-width: 100%;
+        h1 {
+            font-size: 2.5rem;
+        }
+    }
+}

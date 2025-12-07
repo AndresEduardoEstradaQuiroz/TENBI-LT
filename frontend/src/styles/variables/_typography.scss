@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+
+:root{
+  /* familias */
+  --family-default: "Poppins", sans-serif;
+  --family-display: Outfit, var(--family-default);
+  --family-mono: "Roboto Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* pesos */
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+
+  /* escala tipográfica (rem con base 16px) */
+  --text-xs: 0.8125rem; /* 13px */
+  --text-sm: 0.875rem;  /* 14px */
+  --text-md: 1rem;      /* 16px */
+  --text-lg: 1.125rem;  /* 18px */
+  --text-xl: 1.5rem;    /* 24px */
+  --text-display: 3rem; /* 48px */
+
+  /* line-heights (multiplicadores cómodos) */
+  --leading-tight: 1.2;
+  --leading-normal: 1.45;
+  --leading-relaxed: 1.6;
+
+  /* tracking (usa negativo solo en títulos grandes) */
+  --track-tight: -0.01em;   /* sutil */
+  --track-tighter: -0.02em; /* headings grandes */
+  --track-normal: 0em;
+  --track-wide: 0.02em;
+}
+
+/* ajustes globales de render */
+html { font-size: 16px; }
+body {
+  font-family: var(--family-default);
+  font-optical-sizing: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: var(--⭐-text-default, #111);
+}
+
+/* Cuerpo */
+.body__small{
+  font: var(--weight-regular) var(--text-xs)/var(--leading-relaxed) var(--family-default);
+  letter-spacing: var(--track-normal);
+}
+.body__medium{
+  font: var(--weight-regular) var(--text-sm)/var(--leading-relaxed) var(--family-default);
+  letter-spacing: var(--track-normal);
+}
+.body__large{
+  font: var(--weight-regular) var(--text-md)/var(--leading-normal) var(--family-default);
+  letter-spacing: var(--track-normal);
+}
+
+/* Cuerpo strong */
+.body__smallstrong{
+  font: var(--weight-semibold) var(--text-xs)/var(--leading-relaxed) var(--family-default);
+  letter-spacing: var(--track-normal);
+}
+.body__mediumstrong{
+  font: var(--weight-semibold) var(--text-sm)/var(--leading-relaxed) var(--family-default);
+  letter-spacing: var(--track-normal);
+}
+.body__largestrong{
+  font: var(--weight-semibold) var(--text-md)/var(--leading-normal) var(--family-default);
+  letter-spacing: var(--track-normal);
+}
+
+/* Headings */
+.heading__display{
+  font: var(--weight-medium) var(--text-display)/1.15 var(--family-display);
+  letter-spacing: var(--track-tighter);
+}
+.heading__large{
+  font: var(--weight-medium) var(--text-xl)/1.25 var(--family-default);
+  letter-spacing: var(--track-tight);
+}
+.heading__large__semibold{
+  font: var(--weight-semibold) var(--text-xl)/1.25 var(--family-default);
+  letter-spacing: var(--track-tight);
+}
+.heading__medium{
+  font: var(--weight-medium) var(--text-lg)/1.3 var(--family-default);
+  letter-spacing: var(--track-tight);
+}
+.heading__small{
+  font: var(--weight-medium) var(--text-md)/1.3 var(--family-default);
+  letter-spacing: var(--track-normal);
+}

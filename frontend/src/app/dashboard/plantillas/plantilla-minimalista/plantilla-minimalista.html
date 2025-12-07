@@ -1,0 +1,70 @@
+<div class="plantilla-minimalista">
+
+  <h1>{{ linea?.titulo }}</h1>
+  <p class="tema">{{ linea?.tema?.nombreTema }}</p>
+  <p class="descripcion">
+    {{ showFullDesc ? linea?.descripcion : (linea?.descripcion | slice:0:260) + (linea?.descripcion?.length > 260 ?
+    '...' : '') }}
+    <a class="link-icon" [href]="linea?.url" target="_blank">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+          </svg>
+          </a>
+  </p>
+          
+  <button *ngIf="linea?.descripcion?.length > 260" class="leer-mas" (click)="toggleDesc()">
+    {{ showFullDesc ? 'Mostrar menos' : 'Leer más' }}
+  </button>
+
+
+  <div class="timeline">
+
+    <div class="linea-central"></div>
+
+    <div class="items">
+      <div class="item" *ngFor="let h of linea?.hitosOrdenados; let i = index" [class.arriba]="i % 2 === 0"
+        [class.abajo]="i % 2 === 1">
+        <!-- Año con fondo de color -->
+        <div class="ano" [style.background]="obtenerColor(i)">
+          {{ h.anio }}
+        </div>
+
+        <!-- Línea que conecta el año con el círculo -->
+        <div class="linea-conector" [style.background]="obtenerColor(i)"></div>
+
+        <!-- Punto central -->
+        <div class="punto" [style.border-color]="obtenerColor(i)"></div>
+
+        <!-- Contenido (sin año) -->
+        <div class="contenido">
+          <h3>{{ h.tituloHito }}</h3>
+
+          <p class="texto">{{ h.descripcionHito }}</p>
+
+          <!-- Imagen del hito -->
+          <ng-container *ngIf="h.imagenHito && h.imagenHito.trim() !== ''; else sinImagen">
+            <img class="img-hito" [src]="'http://localhost:8080' + h.imagenHito" alt="img-hito"
+              [style.border-color]="obtenerColor(i)" (error)="h.imagenHito = ''" />
+
+          </ng-container>
+
+          <ng-template #sinImagen></ng-template>
+
+
+          <ng-container *ngIf="h.url">
+          <a class="link-icon" [href]="h.url" target="_blank">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+          </svg>
+          </a>
+        </ng-container>
+
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

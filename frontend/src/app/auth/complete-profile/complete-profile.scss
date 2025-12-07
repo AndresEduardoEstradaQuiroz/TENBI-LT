@@ -1,0 +1,218 @@
+/* src/app/auth/complete-profile/complete-profile.scss */
+
+// Variables locales (usamos las variables CSS de styles.scss)
+$color-primary: var(--color-primary);
+$color-accent: var(--color-accent); // Añadido para posible uso futuro
+$color-text-dark: var(--color-text-dark);
+$color-text-light: var(--color-text-light);
+$color-white: var(--color-white);
+$color-light-gray: var(--color-light-gray);
+$color-border: #ddd;
+
+// --- Contenedor Principal (Layout de Dos Columnas) ---
+.profile-layout-container {
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+    background-color: #ffffff; /* Fondo sutil general: #f0f4f8 */
+}
+
+// === COLUMNA IZQUIERDA: Descripción (Fondo Púrpura Sutil) ===
+.description-section {
+    flex: 1;
+    /* CAMBIO CLAVE: Usamos un color pastel derivado de --color-primary */
+    background-color:  #e6eef7; 
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    max-width: 50%; 
+    border-top-right-radius: 50px; 
+    border-bottom-right-radius: 50px;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05); 
+}
+
+
+.header-tenbi {
+  position: absolute;
+  top: 30px;
+  right: 40px;
+  font-weight: 700;
+  font-size: 1.5rem;
+  z-index: 10;
+}
+
+.description-content {
+    
+    h1 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: $color-text-dark;
+        margin-bottom: 20px;
+    }
+    p {
+        font-size: 1.1rem;
+        line-height: 1.5;
+        color: $color-text-dark;
+        margin-bottom: 15px;
+    }
+    .small-text {
+        font-size: 0.9rem;
+        color: rgba(34, 34, 34, 0.7);
+    }
+}
+
+// === COLUMNA DERECHA: Formulario ===
+.form-section {
+    flex: 2; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+}
+
+// Estilo para la tarjeta del formulario (centrada en la columna blanca)
+.form-card {
+    background: $color-white;
+    padding: 40px; 
+    border-radius: 16px; 
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); 
+    width: 100%;
+    max-width: 450px; 
+}
+
+// --- Estilos de Formulario ---
+h2 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: $color-text-dark;
+    margin-bottom: 30px; 
+    text-align: left; 
+}
+
+label {
+    display: block;
+    font-size: 0.95rem; 
+    font-weight: 600;
+    color: $color-text-dark;
+    margin-bottom: 8px;
+    margin-top: 25px; 
+}
+
+/* Wrapper para el select y su icono */
+.select-wrapper {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid $color-border;
+    border-radius: 10px; 
+    background-color: $color-white;
+    font-size: 1rem;
+    color: $color-text-dark;
+    appearance: none;
+    
+    &:focus {
+        /* Usamos el color en el focus */
+        border-color: #5585B5; 
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(#5585B5, 0.2); 
+    }
+}
+
+.select-icon {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%) rotate(90deg); 
+    pointer-events: none;
+    width: 18px;
+    height: 18px;
+    color: $color-text-light;
+    transition: transform 0.2s;
+}
+
+button[type="submit"] {
+    
+    /* Usamos el color primario púrpura para el botón principal */
+    background-color: #5585B5;
+    border: none;
+    color: #FFFFFF;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    &:hover {
+        background-color: #5585B5;
+    }
+}
+
+/* --- NUEVOS ESTILOS PARA TARJETAS DE GÉNERO --- */
+.gender-selector-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); 
+    gap: 12px;
+}
+
+.gender-selector-card {
+    padding: 15px 10px;
+    border: 2px solid $color-border;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: center;
+    user-select: none;
+    background-color: $color-white; 
+    
+    &:hover {
+        border-color: rgba($color-accent, 0.5);
+        box-shadow: 0 2px 8px rgba(92, 34, 16, 0.05);
+    }
+    
+    &.selected {
+       
+        border-color: #5585B5;
+        background-color: rgba($color-primary, 0.1); 
+        box-shadow: 0 4px 10px rgba($color-primary, 0.2);
+    }
+    
+    .card-icon {
+        font-size: 1.8rem; 
+        line-height: 1;
+    }
+    .card-text {
+        font-size: 0.85rem;
+        font-weight: 500;
+        color: $color-text-dark;
+        margin-top: 5px;
+    }
+}
+
+
+@media (max-width: 992px) {
+    .description-section {
+        display: none; 
+    }
+    .profile-layout-container {
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+    }
+    .form-section {
+        padding: 20px;
+        flex: 1;
+    }
+    .form-card {
+        max-width: 100%;
+        margin: auto;
+        box-shadow: none; 
+        border-radius: 0;
+    }
+}

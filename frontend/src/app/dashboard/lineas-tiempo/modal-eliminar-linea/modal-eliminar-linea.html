@@ -1,0 +1,23 @@
+<div class="modal-backdrop" *ngIf="visible">
+  <div class="modal-box">
+    
+    <!-- Header -->
+    <div class="modal-header">
+      <h3><span class="body__largestrong">{{ titulo }}</span></h3>
+      <button class="close-btn" (click)="cerrar()">&times;</button>
+    </div>
+
+    <!-- Body -->
+    <div class="modal-body">
+      <p><span class="body__small">Estás a punto de mover tu línea a la sección Eliminados.</span></p>
+      <p><span class="body__small">Siempre puedes restaurarlo más tarde desde la sección Eliminados.</span></p>
+    </div>
+
+    <!-- Footer -->
+    <div class="modal-footer">
+      <button class="btn-cancelar" (click)="cerrar()"><span class="body__medium">Cancelar</span></button>
+      <button class="btn-eliminar" (click)="confirmar()"><span class="body__medium">Mover línea a eliminados</span></button>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,40 @@
+<main id="guardados-page">
+  <app-header [titulo]="'Guardados'"></app-header>
+
+  <section id="content">
+    <section id="proyects-main">
+
+      <h3 class="section-title heading__small">Tus líneas de tiempo guardadas</h3>
+
+      <div id="timelines-content-wrapper">
+        <div class="cards-grid">
+
+          <app-timeline-card
+            *ngFor="let linea of guardados"
+            [idLinea]="linea.idLineaTiempo"
+            [imagen]="linea.imagenPortada ? ('http://localhost:8080' + linea.imagenPortada) : 'assets/default.jpg'"
+            [titulo]="linea.titulo"
+            [autor]="linea.usuario?.nombre || 'Tú'"
+            [fecha]="linea.fechaCreacion | date:'longDate'"
+            [tags]="linea.palabrasClave?.split(',') || []"
+            [mostrarGuardado]="true"
+            [mostrarMeGusta]="true"
+
+            [estadoMeGusta]="linea.estadoMeGusta"
+            [contadorMeGusta]="linea.contadorMeGusta"
+
+            [estadoGuardado]="linea.estadoGuardado"
+            [contadorGuardado]="linea.contadorGuardado"
+
+            (clickMeGusta)="toggleMeGusta($event)"
+            (clickGuardado)="toggleGuardado($event)"
+            (abrirLinea)="irALinea($event)">
+            >
+          </app-timeline-card>
+
+        </div>
+      </div>
+
+    </section>
+  </section>
+</main>

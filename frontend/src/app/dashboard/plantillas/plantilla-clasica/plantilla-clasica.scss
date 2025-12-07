@@ -1,0 +1,250 @@
+.plantilla-clasica {
+  width: 100%;
+  padding: 20px;
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+  color: #333;
+
+  .header-content {
+    margin-bottom: 40px;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    color: #1a1a1a;
+  }
+
+  .tema {
+    font-weight: 700;
+    color: #22262a; /* Color primario */
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+  }
+
+  .descripcion {
+    max-width: 800px;
+    margin: 0 auto 30px auto;
+    color: #555;
+  }
+
+  /* --- Contenedores de la Línea de Tiempo --- */
+
+ .timeline-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 20px 0;
+  }
+
+  .timeline-container {
+    max-width: 100%;
+    position: relative;
+    /* Reducimos el padding-top para acercar todo, ya que el círculo estará montado */
+    padding-top: 50px; 
+    display: flex;
+    justify-content: center;
+  }
+
+  /* Contenedor Flex principal para todos los hitos */
+  .milestones-row {
+    display: flex;
+    justify-content: space-between; 
+    align-items: flex-start;
+    position: relative;
+    z-index: 2;
+    max-width: 1200px; 
+    width: 100%;
+    padding: 0 20px; 
+    
+    /* 1. Generamos la línea que solo conecta los puntos */
+    &::before {
+      content: "";
+      position: absolute;
+      /* CLAVE: La línea ahora se coloca 25px hacia abajo,
+         centrando el círculo (40px alto) en el eje Y de la línea (4px).
+         Esto también define el eje central de la línea de tiempo. */
+      top: 25px; 
+      /* Ajustamos los valores left y right con un pequeño margen de compensación.
+         El círculo tiene 40px de ancho, por lo que 20px es el centro.
+         El padding de 10px en el item debe compensarse. */
+      left: 50px;  
+      right: 40px; 
+      height: 4px;
+      background: #c3c3c3;
+      z-index: 1;
+      border-radius: 2px;
+    }
+  }
+  
+  /* --- Ítems Flexibles (Se adaptan al espacio) --- */
+
+  .milestone-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    
+    flex: 1 1 min-content; 
+    min-width: 180px; 
+    max-width: 250px; 
+    padding: 0 10px;
+  }
+  
+  /* --- Indicador Circular (Punto en la línea) --- */
+
+  .milestone-indicator {
+    position: relative; 
+    top: 5px; /* Círculo montado en el centro de la línea (25px) */
+    width: 40px;
+    height: 40px;
+    background:#272d33; 
+    border: 4px solid #24282c; 
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+    color: #ffffff; /* Color del número */
+    z-index: 3;
+    box-shadow: 0 0 0 4px #fff; 
+    margin: 0 auto; 
+
+    /* Conector Vertical (El "Palo" que baja) */
+    &::after {
+        content: "";
+        position: absolute;
+        bottom: -28px; /* Inicia justo debajo del círculo (20px) y termina con el punto */
+        left: 50%;
+        transform: translateX(-50%);
+        width: 3px;
+        height: 28px; /* Largo del tallo */
+        background: #22262a;
+        z-index: 2;
+        /* Quitamos los border-radius y border-bottom para usar el pseudo-elemento para el punto */
+    }
+
+    /* 🔥 CORRECCIÓN CLAVE: Círculo pequeño al final del conector */
+    &::before {
+        content: "";
+        position: absolute;
+        bottom: -35px; /* Colocamos el centro del punto 7px debajo del tallo */
+        left: 50%;
+        transform: translateX(-50%);
+        width: 7px;
+        height: 7px;
+        border: 2px solid #22262a; /* Borde del círculo pequeño */
+        background: #ffffff; /* Fondo blanco para que se vea */
+        border-radius: 50%;
+        z-index: 4; /* Debe estar por encima de la tarjeta */
+    }
+  }
+
+  /* --- Tarjeta de Contenido --- */
+
+  .timeline-card {
+    width: 100%; 
+    margin-top: 40px; 
+    /* Ajustamos el padding-top para que el pequeño punto quede justo por encima de la tarjeta */
+    padding-top: 35px; 
+    
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    padding: 15px;
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+    }
+  }
+
+  .imagen-hito img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 10px;
+  }
+
+  .img-hito {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+
+  h3 {
+    font-size: 1.3rem;
+    color: #333;
+    margin: 0 0 5px 0;
+  }
+
+  .fecha {
+    font-weight: 600;
+    color: #6c757d;
+    font-size: 0.95rem;
+    margin-bottom: 10px;
+  }
+
+  .descripcion-hito {
+    font-size: 0.9rem;
+    color: #444;
+    margin-bottom: 10px;
+  }
+
+  a {
+    display: inline-block;
+    font-weight: 600;
+    color: #007bff;
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    transition: border-bottom 0.2s;
+
+    &:hover {
+        border-bottom: 2px solid #007bff;
+    }
+  }
+}
+
+/* Media Query para tabletas y móviles */
+@media (max-width: 768px) {
+    .milestone-item {
+        min-width: 150px; 
+        padding: 0 5px; /* Más pequeño en pantallas estrechas */
+    }
+    .milestone-indicator {
+        width: 35px;
+        height: 35px;
+    }
+    /* Aseguramos que la línea se adapte también */
+    .milestones-row::before {
+        left: 17.5px; /* Mitad de 35px */
+        right: 17.5px;
+    }
+}
+
+.link-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 4px;
+  color: #333;
+  text-decoration: none;
+  transition: transform .2s ease, color .2s ease;
+
+  svg {
+    width: 15px;
+    height: 15px;
+  }
+
+  &:hover {
+    transform: scale(1.15);
+    color: #000;
+  }
+}
+
